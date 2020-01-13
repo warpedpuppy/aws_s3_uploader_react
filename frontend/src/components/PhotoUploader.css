@@ -1,0 +1,15 @@
+form {
+    width: 700px;
+    margin: 150px auto;
+}
+
+form div {
+    margin: 30px auto;
+}
+
+.hide {
+    display:none;
+}
+.show {
+    display: block;
+}

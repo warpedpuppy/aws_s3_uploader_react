@@ -12,6 +12,7 @@ export default class PhotoUploader extends React.Component {
         this.file = null;
         this.requiredSize = {width: 640, height: 480}
         this.state = {
+            hideForm: false,
             photoSizeCheck: false,
             photoMessage: `images must be ${this.requiredSize.width}x${this.requiredSize.height}`
         }
@@ -40,7 +41,7 @@ export default class PhotoUploader extends React.Component {
     onSubmitHandler = (e) => {
 
         e.preventDefault();
-        this.setState({showSpinners: true})
+        this.setState({hideForm: true})
         if (!this.state.photoSizeCheck) return;
 
         UploadService.initUpload('event_image', this.photoLoadComplete.bind(this))
@@ -48,7 +49,7 @@ export default class PhotoUploader extends React.Component {
 
 
     photoLoadComplete = (obj) => {
-        this.setState({photoMessage: "photo uploaded", photoSizeCheck: true, showSpinners: false})
+        this.setState({photoMessage: "photo uploaded", photoSizeCheck: true, hideForm: false})
     }
     
 
@@ -61,33 +62,28 @@ export default class PhotoUploader extends React.Component {
     }
 
     render() {
-        let spinnerClass = (!this.state.showSpinners) ? 'hide' : 'show';
+        let hideForm = (this.state.hideForm) ? 'hide' : 'show';
         let photoMessageClass = (this.state.photoSizeCheck)? 'photo-message-success' : 'photo-message-error';
         return (
-            <div>
-
-                <div className="enter-event">
-                    <div className="module-body">
-                       
-                        <form onSubmit={this.onSubmitHandler}>
-                            <div className="custom-file">
-                                <input type="file" className="custom-file-input" name="event_image" id="event_image"
-                                    onChange={
-                                        this.onChangeHandler
-                                    }
-                                    accept=".jpg, .png, .gif, .jpeg"/>
-                                <label className="custom-file-label" id="loader-label" htmlFor="event_image">upload a new image 640x480
-                                </label>
-                                <div className={photoMessageClass}>{this.state.photoMessage}</div>
-                            </div>
-                            <div>
-                                <button type="submit">submit</button>
-                            </div>
-                        </form>
-                        <img src="" id="preview" />
+            <>
+                <h1 className={ (!this.state.hideForm) ? 'hide' : 'show' }>loading. . . </h1>
+                <form onSubmit={this.onSubmitHandler} className={hideForm}>
+                    <div className="custom-file">
+                        <input type="file" className="custom-file-input" name="event_image" id="event_image"
+                            onChange={
+                                this.onChangeHandler
+                            }
+                            accept=".jpg, .png, .gif, .jpeg"/>
+                        <label className="custom-file-label" id="loader-label" htmlFor="event_image">upload a new image 640x480
+                        </label>
+                        <div className={photoMessageClass}>{this.state.photoMessage}</div>
                     </div>
-                </div>
-            </div>
+                    <div>
+                        <button type="submit">submit</button>
+                    </div>
+                </form>
+                <img src="" id="preview" />
+            </>
         );
     }
 }

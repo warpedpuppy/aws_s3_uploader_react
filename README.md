@@ -6,7 +6,8 @@ Then create a .env file in the backend based on the .exampleenv file and add  th
 
 Then in the front end create a config.js file based on the exampleconfig.js file.
 
-Then fire it up.
+Then fire up both the front ends and backends.
+
 
 Warning:  this is not meant for production.  In production, protect your backend with a JWT.
 
