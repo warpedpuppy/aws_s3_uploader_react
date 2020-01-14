@@ -26,9 +26,7 @@ const UploaderService = {
   readyStateChangeHandler () {
     if (this.xhr.readyState === 4) {
       if (this.xhr.status === 200) {
-
         if (this.stage === 1) {
-         
           const response = JSON.parse(this.xhr.responseText);
           this.uploadFile(this.newFile, response.signedRequest, response.url);
           this.stage ++;
@@ -36,20 +34,18 @@ const UploaderService = {
           document.getElementById('preview').src = this.url;
           this.onComplete();
         }
-
       } else {
-        
         if (this.stage === 1) {
-          console.log('Could not get signed URL.');
+          console.error('Could not get signed URL.');
         } else {
-          console.log("error uploading", this.url)
+          console.error("error uploading", this.url)
         }
       }
     }
   },
   getSignedRequest(file) {
     this.newFile = file;
-    this.xhr.open('GET', `${Config.API_ENDPOINT}/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+    this.xhr.open('GET', `${Config.API_ENDPOINT}/api/uploader/sign-s3?file-name=${file.name}&file-type=${file.type}`);
     this.xhr.send();
   },
   uploadFile(file, signedRequest, url) {

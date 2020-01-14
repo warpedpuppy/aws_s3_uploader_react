@@ -14,7 +14,8 @@ export default class PhotoUploader extends React.Component {
         this.state = {
             hideForm: false,
             photoSizeCheck: false,
-            photoMessage: `images must be ${this.requiredSize.width}x${this.requiredSize.height}`
+            photoMessage: ``,
+            showImage: false
         }
     }
     
@@ -41,6 +42,10 @@ export default class PhotoUploader extends React.Component {
     onSubmitHandler = (e) => {
 
         e.preventDefault();
+        if (!this.file) {
+            this.setState({photoMessage: `please choose an image`});
+            return;
+        }
         this.setState({hideForm: true})
         if (!this.state.photoSizeCheck) return;
 
@@ -49,7 +54,7 @@ export default class PhotoUploader extends React.Component {
 
 
     photoLoadComplete = (obj) => {
-        this.setState({photoMessage: "photo uploaded", photoSizeCheck: true, hideForm: false})
+        this.setState({photoMessage: "photo uploaded", photoSizeCheck: true, hideForm: false, showImage: true})
     }
     
 
@@ -82,7 +87,7 @@ export default class PhotoUploader extends React.Component {
                         <button type="submit">submit</button>
                     </div>
                 </form>
-                <img src="" id="preview" />
+                <img src="" id="preview" className={ this.state.showImage ? 'show' : 'hide' } alt="uploaded item" />
             </>
         );
     }
