@@ -17,6 +17,8 @@ instructions:
 
 1. open a new terminal window and cd into the front end folder. 
 
+1. copy the "exampleconfig.js" file and make a "config.js" and fill it out appropriately.
+
 1. run "yarn" (I know, why did I use yarn here and npm in the backend? because yarn comes with the create react package so I just went with it)
 
 1. then run a "yarn start"
