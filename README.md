@@ -23,7 +23,7 @@ instructions:
 1. frontend:
     1. open a new terminal window and cd into the frontend folder. 
 
-    1. cd into the src folder and copy the "exampleconfig.js" file and make a "config.js" (code: cp .exampleconfig.js .config.js)and fill it out the url that the image tags will need as their src attribute. 
+    1. cd into the src folder and copy the "exampleconfig.js" file and make a "config.js" (code: cp .exampleconfig.js .config.js) and fill out the url that the image tags will need as their src attribute. 
 
     1. cd back up into the frontend folder and run "yarn" 
 

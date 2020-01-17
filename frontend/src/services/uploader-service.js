@@ -45,7 +45,7 @@ const UploaderService = {
   },
   getSignedRequest(file) {
     this.newFile = file;
-    this.xhr.open('GET', `${Config.API_ENDPOINT}/api/uploader/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+    this.xhr.open('GET', `${Config.API_ENDPOINT}/uploader/sign-s3?file-name=${file.name}&file-type=${file.type}`);
     this.xhr.send();
   },
   uploadFile(file, signedRequest, url) {

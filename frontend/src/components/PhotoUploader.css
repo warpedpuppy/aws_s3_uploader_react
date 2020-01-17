@@ -2,9 +2,11 @@ form {
     width: 700px;
     margin: 150px auto;
 }
-*, ::after, ::before {
-    box-sizing: border-box;
+
+form div {
+    margin: 30px auto;
 }
+
 .custom-file {
     position: relative;
     display: inline-block;
@@ -55,9 +57,7 @@ form {
     border-left: inherit;
     border-radius: 0 .25rem .25rem 0;
 }
-form div {
-    margin: 30px auto;
-}
+
 button[type=submit] {
     padding: 10px 20px;
     border-radius: 5px;
@@ -70,4 +70,12 @@ button[type=submit] {
 }
 #preview {
     margin: 0 auto;
+}
+.photo-message-success {
+    color: green;
+    font-weight: bold;
+}
+.photo-message-error {
+    color: red;
+    font-style: italic;
 }
