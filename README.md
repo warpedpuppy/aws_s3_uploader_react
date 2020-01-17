@@ -10,8 +10,8 @@ instructions:
 1. first go to AWS and sign up for an S3 bucket, you need to get four pieces of information:
     1. the secret access key
     1. the not secret access key
-    1. the bucked name
-    1. the url root of the bucket that you'll need for the front end img src attributes
+    1. the bucket name
+    1. the url root of the bucket that you'll need for the frontend img src attributes
 
 1. backend: 
     1. open a terminal window and cd into your backend folder.
