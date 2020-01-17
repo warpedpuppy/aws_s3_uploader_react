@@ -14,7 +14,7 @@ instructions:
 1. backend: 
     1. open a terminal window and cd into your backend folder.
 
-    1. Copy the ".exampleenv" file and call it ".env". Put the info you got from aws in the appropriate places.  
+    1. Copy the ".exampleenv" file and call it ".env" (code: cp .exampleenv .env). Fill out this .env file with the data you got from aws.
 
     1. run  "yarn". 
 
@@ -23,7 +23,7 @@ instructions:
 1. frontend:
     1. open a new terminal window and cd into the frontend folder. 
 
-    1. cd into the src folder and copy the "exampleconfig.js" file and make a "config.js" and fill it out appropriately. 
+    1. cd into the src folder and copy the "exampleconfig.js" file and make a "config.js" (code: cp .exampleconfig.js .config.js)and fill it out the url that the image tags will need as their src attribute. 
 
     1. cd back up into the frontend folder and run "yarn" 
 
