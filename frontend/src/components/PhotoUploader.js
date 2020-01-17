@@ -72,19 +72,19 @@ export default class PhotoUploader extends React.Component {
             <>
                 <h1 className={ (!this.state.hideForm) ? 'hide' : 'show' }>loading. . . </h1>
                 <form onSubmit={this.onSubmitHandler} className={(this.state.hideForm) ? 'hide' : 'show'}>
-                    <div className="custom-file">
+                    <div className="file-input-container">
                         <input 
                             type="file" 
-                            className="custom-file-input" 
+                            className="file-input" 
                             name="event_image" 
                             id="event_image"
                             onChange={ this.onChangeHandler }
                             accept=".jpg, .png, .gif, .jpeg" />
                         <label 
-                            className="custom-file-label" 
+                            className="file-label" 
                             id="loader-label" 
                             htmlFor="event_image">
-                            upload a new image 640x480
+                            click here to choose a new image -- must be 640x480
                         </label>
                         <div className={photoMessageClass}>{this.state.photoMessage}</div>
                     </div>
