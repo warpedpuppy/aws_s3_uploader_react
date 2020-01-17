@@ -24,6 +24,14 @@ form .file-label {
     color: #999;
 
 }
+form .file-label:hover {
+    border: 1px solid green;
+}
+form .file-label:active {
+    top: -1px;
+    left: -1px;
+    border: 3px solid purple;
+}
 form button {
     padding: 10px 15px;
     border-radius: 5px;
