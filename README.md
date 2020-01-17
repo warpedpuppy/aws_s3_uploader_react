@@ -31,5 +31,5 @@ instructions:
 
 1. it should then be ready to test.
 
-Warning:  this is not meant for production.  In production, protect your backend with a JWT.
+**Warning:  this is not meant for production.  In production, protect your backend with a JWT.**
 
