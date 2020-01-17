@@ -5,7 +5,7 @@ This is a react front end / express backend which will upload photos to an AWS S
 The application I created this for required the image to be 640x480, so this also checks to make sure the image has those dimensions.  This should be pretty easy to remove or customize.
 
 instructions: 
-1. first go to AWS and sign up for an S3 bucket, you need to get two pieces of information:
+1. first go to AWS and sign up for an S3 bucket, you need to get three pieces of information:
     1. the secret access key
     1. the not secret access key
     1. the url root of the bucket that you'll need for the front end img src attributes
