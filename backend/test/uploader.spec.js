@@ -16,8 +16,9 @@ describe('uploader endpoint', function() {
             expect(responseJSON).to.have.keys("signedRequest", "url")
 
             // let { signedRequest } = responseJSON;
+            // console.log(signedRequest, filePath)
             //  return supertest(app)
-            //     .put(signedRequest)
+            //     .get(signedRequest)
             //     .attach('file', filePath)
             //     .then(result => console.log(result))
             //     .catch(error => console.error(error))
