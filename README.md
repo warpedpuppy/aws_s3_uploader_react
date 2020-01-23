@@ -9,11 +9,13 @@ This code is based on the code from this page: https://devcenter.heroku.com/arti
 to do: back end test to upload photo and download photo
 
 instructions: 
-1. first go to AWS and sign up for an S3 bucket, you need to get four pieces of information:
-    1. the secret access key
-    1. the not secret access key
-    1. the bucket name
-    1. the url root of the bucket that you'll need for the frontend img src attributes
+1. first go to AWS and sign up for an S3 bucket, 
+    1. you need to get four pieces of information:
+        1. the secret access key
+        1. the not secret access key
+        1. the bucket name
+        1. the url root of the bucket that you'll need for the frontend img src attributes
+    1. while you are in the AWS S3 bucket admin section, makes sure you can upload photos to it.
 
 1. backend: 
     1. open a terminal window and cd into your backend folder.
