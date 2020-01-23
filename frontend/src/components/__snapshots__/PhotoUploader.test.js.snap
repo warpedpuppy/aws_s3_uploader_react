@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot tests renders the UI as expected 1`] = `
+<Fragment>
+  <h1
+    className="hide"
+  >
+    loading. . . 
+  </h1>
+  <form
+    className="show"
+    onSubmit={[Function]}
+  >
+    <div
+      className="file-input-container"
+    >
+      <input
+        accept=".jpg, .png, .gif, .jpeg"
+        className="file-input"
+        id="event_image"
+        name="event_image"
+        onChange={[Function]}
+        type="file"
+      />
+      <label
+        className="file-label"
+        htmlFor="event_image"
+        id="loader-label"
+      >
+        click here to choose a new image -- must be 640x480
+      </label>
+      <div
+        className="photo-message-error"
+        id="result"
+      />
+    </div>
+    <div>
+      <button
+        className="form-submit"
+        type="submit"
+      >
+        submit
+      </button>
+    </div>
+  </form>
+  <img
+    alt="uploaded item"
+    className="hide"
+    id="preview"
+    src=""
+  />
+</Fragment>
+`;

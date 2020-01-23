@@ -41,7 +41,7 @@ export default class PhotoUploader extends React.Component {
 
     onSubmitHandler = (e) => {
 
-        e.preventDefault();
+        if(e) e.preventDefault();
         if (!this.file) {
             this.setState({photoMessage: `please choose an image`});
             return;
@@ -86,10 +86,10 @@ export default class PhotoUploader extends React.Component {
                             htmlFor="event_image">
                             click here to choose a new image -- must be 640x480
                         </label>
-                        <div className={photoMessageClass}>{this.state.photoMessage}</div>
+                        <div id="result" className={photoMessageClass}>{this.state.photoMessage}</div>
                     </div>
                     <div>
-                        <button type="submit">submit</button>
+                        <button className="form-submit" type="submit">submit</button>
                     </div>
                 </form>
                 <img src="" id="preview" className={ this.state.showImage ? 'show' : 'hide' } alt="uploaded item" />
