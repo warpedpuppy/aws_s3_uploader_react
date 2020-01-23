@@ -14,6 +14,7 @@ uploaderRouter.get('/sign-s3', (req, res) => {
       ContentType: fileType,
       ACL: 'public-read'
     };
+  
     s3.getSignedUrl('putObject', s3Params, (err, data) => {
       if(err){
         return res.end();
@@ -22,8 +23,10 @@ uploaderRouter.get('/sign-s3', (req, res) => {
         signedRequest: data,
         url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
       };
-      res.write(JSON.stringify(returnData));
-      res.end();
+  
+      res
+      .status(202)
+      .json({success: true, data: JSON.stringify(returnData)})
     });
   })
 
