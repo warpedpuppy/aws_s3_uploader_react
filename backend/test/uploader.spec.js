@@ -1,23 +1,24 @@
 const app = require('../src/app')
 var File = require("file-class");
 describe('uploader endpoint', function() {
-    it(`responds with 202 and return an object with string`, () => {
+    it(`uploads and then deletes image`, () => {
 
         let file = new File();
         file.name = `IMG_7548.jpeg`;
         file.type = 'image/jpeg';
         let filePath = `${__dirname}/IMG_7548.jpeg`;
-        let signedRequest = '';
 
         return supertest(app)
-          .get(`/api/uploader/sign-s3?file-name=${filePath}&file-type=${file.type}`)
-          .attach('file', __dirname+'/IMG_7548.jpeg')
-          .expect(202)
-          .expect('Content-Type', /json/)
+          .get(`/api/uploader/sign-s3?file-name=${file.name}&file-type=${file.type}`)
           .expect(res => {
-              expect(res.body.success).to.be.equal(true)
-              expect(res.body.data).to.be.a("string")
-             // let signedRequest = JSON.parse(res.body.data)
+              
+            let { signedRequest } = JSON.parse(res.text);
+
+            //  return supertest(app)
+            //     .put(signedRequest)
+            //     .attach('image', filePath)
+            //     .then(result => console.log(result))
+            //     .catch(error => console.error(error))
           })
        
       

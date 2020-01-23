@@ -6,6 +6,8 @@ The application I created this for required the image to be 640x480, so this als
 
 This code is based on the code from this page: https://devcenter.heroku.com/articles/s3-upload-node
 
+to do: back end test to upload photo and download photo
+
 instructions: 
 1. first go to AWS and sign up for an S3 bucket, you need to get four pieces of information:
     1. the secret access key
