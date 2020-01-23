@@ -1,57 +1,43 @@
 import Config from '../config';
 
 const UploaderService = {
-  imageName: '',
   onComplete: undefined,
-  xhr: new XMLHttpRequest(),
-  stage: 1,
-  newFile: undefined,
-  url: undefined,
+  fileType: undefined,
   initUpload(id, onComplete) {
     this.newFile = undefined;
-    this.stage = 1;
     this.onComplete = onComplete;
     const { files } = document.getElementById(id);
     const file = files[0];
-   
-    if ( !this.xhr.onreadystatechange) {
-      this.xhr.onreadystatechange = this.readyStateChangeHandler.bind(this);
-    }
-
-    if (file == null) {
+    if (file === null) {
       return alert('No file selected.');
     }
     this.getSignedRequest(file);
+
   },
-  readyStateChangeHandler () {
-    if (this.xhr.readyState === 4) {
-      if (this.xhr.status === 200) {
-        if (this.stage === 1) {
-          const response = JSON.parse(this.xhr.responseText);
-          this.uploadFile(this.newFile, response.signedRequest, response.url);
-          this.stage ++;
-        } else {
-          document.getElementById('preview').src = this.url;
-          this.onComplete();
-        }
-      } else {
-        if (this.stage === 1) {
-          console.error('Could not get signed URL.');
-        } else {
-          console.error("error uploading", this.url)
-        }
-      }
+  async getSignedRequest(file) {
+    this.fileType = file.type;
+    let result = await fetch(`${Config.API_ENDPOINT}/uploader/sign-s3?file-name=${file.name}&file-type=${file.type}`)
+    let resultJSON = await result.json();
+    let { signedRequest, url } = resultJSON;
+    this.uploadFile(file, signedRequest, url);
+
+  },
+  async uploadFile(file, signedRequest, url) {
+
+    let result = await fetch(signedRequest, {
+      method: "PUT",
+      headers:  {
+        'content-type': this.fileType,
+      },
+      body: file
+    })
+
+    let resultJSON = await result.json
+
+    if (resultJSON) {
+      document.getElementById('preview').src = url;
+      this.onComplete();
     }
-  },
-  getSignedRequest(file) {
-    this.newFile = file;
-    this.xhr.open('GET', `${Config.API_ENDPOINT}/uploader/sign-s3?file-name=${file.name}&file-type=${file.type}`);
-    this.xhr.send();
-  },
-  uploadFile(file, signedRequest, url) {
-    this.url = url;
-    this.xhr.open('PUT', signedRequest);
-    this.xhr.send(file);
   }
 };
 
