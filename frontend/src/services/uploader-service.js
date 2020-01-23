@@ -32,7 +32,7 @@ const UploaderService = {
       body: file
     })
 
-    let resultJSON = await result.json();
+    let resultJSON = await result.json
 
     if (resultJSON) {
       document.getElementById('preview').src = url;
