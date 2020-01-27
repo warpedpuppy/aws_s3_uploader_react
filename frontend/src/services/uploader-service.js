@@ -15,7 +15,7 @@ const UploaderService = {
     let uploadResult = await this.uploadFile(file, signedRequest, url);
     return uploadResult;
   },
-  async uploadFile(file, signedRequest, url) {
+  async uploadFile(file, signedRequest) {
     let result = await fetch(signedRequest, {
       method: "PUT",
       headers:  { 'content-type': file.type },
