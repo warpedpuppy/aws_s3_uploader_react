@@ -11,8 +11,8 @@ const UploaderService = {
   async getSignedRequest(file) {
     let result = await fetch(`${Config.API_ENDPOINT}/uploader/sign-s3?file-name=${file.name}&file-type=${file.type}`)
     let resultJSON = await result.json();
-    let { signedRequest, url } = resultJSON;
-    let uploadResult = await this.uploadFile(file, signedRequest, url);
+    let { signedRequest } = resultJSON;
+    let uploadResult = await this.uploadFile(file, signedRequest);
     return uploadResult;
   },
   async uploadFile(file, signedRequest) {
