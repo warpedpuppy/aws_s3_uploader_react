@@ -1,11 +1,9 @@
 import Config from '../config';
 
 const UploaderService = {
-  onComplete: undefined,
   fileType: undefined,
-  async initUpload(id, onComplete) {
+  async initUpload(id) {
     this.newFile = undefined;
-    this.onComplete = onComplete;
     const { files } = document.getElementById(id);
     const file = files[0];
     if (file === null) return alert('No file selected.');
