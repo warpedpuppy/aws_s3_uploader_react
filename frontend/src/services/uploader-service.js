@@ -1,7 +1,6 @@
 import Config from '../config';
 
 const UploaderService = {
-  fileType: undefined,
   async initUpload(id) {
     this.newFile = undefined;
     const { files } = document.getElementById(id);
@@ -11,7 +10,6 @@ const UploaderService = {
     return res;
   },
   async getSignedRequest(file) {
-    this.fileType = file.type;
     let result = await fetch(`${Config.API_ENDPOINT}/uploader/sign-s3?file-name=${file.name}&file-type=${file.type}`)
     let resultJSON = await result.json();
     let { signedRequest, url } = resultJSON;
@@ -21,7 +19,7 @@ const UploaderService = {
   async uploadFile(file, signedRequest, url) {
     let result = await fetch(signedRequest, {
       method: "PUT",
-      headers:  { 'content-type': this.fileType },
+      headers:  { 'content-type': file.type },
       body: file
     })
     return result.ok;
