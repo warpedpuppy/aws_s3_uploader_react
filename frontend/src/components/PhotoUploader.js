@@ -39,7 +39,7 @@ export default class PhotoUploader extends React.Component {
     }
 
 
-    onSubmitHandler = (e) => {
+    onSubmitHandler = async (e) => {
 
         if(e) e.preventDefault();
         if (!this.file) {
@@ -49,12 +49,17 @@ export default class PhotoUploader extends React.Component {
         this.setState({hideForm: true})
         if (!this.state.photoSizeCheck) return;
 
-        UploadService.initUpload('event_image', this.photoLoadComplete.bind(this))
+        let res = await UploadService.initUpload('event_image')
+        
+        if (res) {
+            this.photoLoadComplete();
+        }
     }
 
 
-    photoLoadComplete = (obj) => {
+    photoLoadComplete = () => {
         this.setState({photoMessage: "photo uploaded", photoSizeCheck: true, hideForm: false, showImage: true})
+        document.getElementById('preview').src = this.img.src;
     }
     
 

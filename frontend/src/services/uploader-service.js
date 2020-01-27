@@ -3,7 +3,7 @@ import Config from '../config';
 const UploaderService = {
   onComplete: undefined,
   fileType: undefined,
-  initUpload(id, onComplete) {
+  async initUpload(id, onComplete) {
     this.newFile = undefined;
     this.onComplete = onComplete;
     const { files } = document.getElementById(id);
@@ -11,16 +11,16 @@ const UploaderService = {
     if (file === null) {
       return alert('No file selected.');
     }
-    this.getSignedRequest(file);
-
+    let res = await this.getSignedRequest(file);
+    return res;
   },
   async getSignedRequest(file) {
     this.fileType = file.type;
     let result = await fetch(`${Config.API_ENDPOINT}/uploader/sign-s3?file-name=${file.name}&file-type=${file.type}`)
     let resultJSON = await result.json();
     let { signedRequest, url } = resultJSON;
-    this.uploadFile(file, signedRequest, url);
-
+    let res = await this.uploadFile(file, signedRequest, url);
+    return res;
   },
   async uploadFile(file, signedRequest, url) {
 
@@ -32,10 +32,7 @@ const UploaderService = {
       body: file
     })
 
-    if (result.ok) {
-      document.getElementById('preview').src = url;
-      this.onComplete();
-    }
+    return result.ok;
   }
 };
 
