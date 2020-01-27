@@ -8,9 +8,7 @@ const UploaderService = {
     this.onComplete = onComplete;
     const { files } = document.getElementById(id);
     const file = files[0];
-    if (file === null) {
-      return alert('No file selected.');
-    }
+    if (file === null) return alert('No file selected.');
     let res = await this.getSignedRequest(file);
     return res;
   },
@@ -23,7 +21,6 @@ const UploaderService = {
     return res;
   },
   async uploadFile(file, signedRequest, url) {
-
     let result = await fetch(signedRequest, {
       method: "PUT",
       headers:  {
@@ -31,7 +28,6 @@ const UploaderService = {
       },
       body: file
     })
-
     return result.ok;
   }
 };
